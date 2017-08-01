@@ -1,41 +1,46 @@
-console.log("cards.js")
+console.log("cards.js");
+
+// let cardText = document.getElementById("inputText").value;
 
 
-let inputText = document.getElementById("inputText").value;
-console.log(inputText);
-
-let cardButton = document.getElementById("cardButton");
+let cardCreateButton = document.getElementById("cardCreateButton");
 
 let cardHolder = document.getElementById("cardHolder");
 
-cardButton.addEventListener("click", createCard);
+cardCreateButton.addEventListener("click", createCard);
 
 let cardID = 0;
 
 function createCard () {
+
+
+	let cardText = document.getElementById("inputText").value;
+	console.log(cardText);
+
 	console.log("Card Create button clicked!");
 	console.log("cardID going into function:", cardID);
-	let cardName = "card" + cardID;
+	let cardName = "Card No. " + cardID;
 	console.log("cardName when card created:", cardName);
-	cardHolder.innerHTML += `<div class="card" id="${cardName}">
-								<p>cardName: ${cardName}</p>
-								<p>${inputText}</p>
+	cardHolder.innerHTML += `<div class="card">
+								<p>${cardName}</p>
+								<p>${cardText}</p>
 								<br>
-								<button id="${cardID}">Delete Card</button>
-								<p>${cardID}</p>
+								<button class="deleteButton">Delete Card</button>
+								<p></p>
 							</div>`
 
-	
+	document.getElementById("inputText").value = "";
 
 // onclick="getCardInfo(event)"
 
 // 
 	// document.getElementById()
+	
 
 	cardID += 1;
 	console.log("cardID after card creation:", cardID);
-
-	appendEventListener();
+	// cardToAppend = cardID - 1;
+	// appendEventListener(cardToAppend);
 }
 
 
@@ -58,28 +63,73 @@ function createCard () {
 
 // div#0.card
 
-let theCards = document.getElementsByClassName("card");
+// let theCards = document.getElementsByClassName("card");
 
-function appendEventListener() { 
+// function appendEventListener(input) { 
 
-	let counterLength = theCards.length;
+// 	// let numberofCardID = Number(input);
+// 	let cardDeleteButton = document.getElementById(input);
 
-	console.log("counterLength", counterLength);
+// 	cardDeleteButton.addEventListener("click", function(event) {
+// 			console.log("delete button on card clicked");
+// 			// console.log("theCards.item(i)", theCards.item(i));
+// 			someThing = event.target.parentElement.id;
+// 			console.log("target something:", someThing);
+// 			document.getElementById(someThing).classList.add("turnred");
+// 			testFunction(someThing);
+// 	});
 
-	for (let i = 0; i < counterLength; i++) {
-		console.log("i", i);
-		theCards.item(i).addEventListener("click", function(event) {
-			console.log("delete button on card clicked");
-			someThing = event.target.parentElement.id;
-			console.log("target something:", someThing);
-			document.getElementById(someThing).classList.add("turnred");
-			// testFunction();
-		});
+	// let counterLength = theCards.length;
+
+	// console.log("counterLength", counterLength);
+
+	// for (let i = 0; i < counterLength; i++) {
+	// 	console.log("i", i);
+
+	// 	console.log("document.getElementById(i)", document.getElementById(i));
+
+	// 	console.log("theCards.item(i)", theCards.item(i));
+
+	// 	let cardDeleteButton = document.getElementById(i);
+
+	// 	cardDeleteButton.addEventListener("click", function(event) {
+	// 		console.log("delete button on card clicked");
+	// 		// console.log("theCards.item(i)", theCards.item(i));
+	// 		someThing = event.target.parentElement.id;
+	// 		console.log("target something:", someThing);
+	// 		document.getElementById(someThing).classList.add("turnred");
+	// 		testFunction(someThing);
+	// 	});
+	// }
+// }
+
+document.querySelector("body").addEventListener("click", function(event) {
+  console.log("event", event);
+  // console.log("event.target.id", event.target.id);
+  // console.log("event.target.getElementId('deleteButton')", event.target.getElementById("deleteButton"));
+  someThing = event.target.parentElement;
+  	console.log("event.target.tagName", event.target.tagName);
+  	console.log("event.target.classList.value", event.target.classList.value);
+	console.log("target something:", someThing);
+	// let nodeToDelete = document.getElementById(someThing);
+	let nodeToDelete = event.target.parentElement
+	console.log("nodeToDelete", nodeToDelete);
+
+	if (event.target.classList.value === "deleteButton"){
+	cardHolder.removeChild(nodeToDelete);
+		console.log("deleteButton triggered");
 	}
-}
+});
 
-// function testFunction (event) {
+
+
+// function testFunction (input) {
 // 	console.log("testFunction also triggered");
-// 	console.log("event.target.id", event.target.id);
-// 	// document.getElementById
+// 	console.log("someThing sent from the event listener", input);
+// 	console.log("document.getElementById(input)", document.getElementById(input));
+// 	let nodeToDelete = document.getElementById(input);
+	// console.log("nodeToDelete", nodeToDelete);
+	// cardHolder.removeChild(nodeToDelete);
+	// console.log("event.target.id", event.target.id);
+	// document.getElementById
 // }
